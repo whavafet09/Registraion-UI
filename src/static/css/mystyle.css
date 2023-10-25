@@ -1,0 +1,9 @@
+.myBorderBlack{
+    border: 1px solid rgba(159, 20, 20, 0.5);
+}
+.gradientBackground {
+    background: linear-gradient(to right, #ffffff, #ffffff, #ffffff);
+    /* Replace the colors (#FF9900 and #FFCC00) with your desired gradient colors */
+  }
+
+  

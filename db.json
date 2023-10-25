@@ -1,0 +1,22 @@
+{
+  "listregistration": [
+    {
+      "Name": "Juan Dela Cruz",
+      "Email": "juan@test.com",
+      "Religion": "Catholic",
+      "Address": "San Isidro Isabela",
+      "OrganizationName": "R1 PH",
+      "ContactNumber": "9876543211",
+      "id": 1
+    },
+    {
+      "Name": "John Doe",
+      "Email": "johndoe@test.com",
+      "Religion": "Catholic",
+      "Address": "San Isidro,Isabela",
+      "OrganizationName": "R6 Ph",
+      "ContactNumber": "09876543212",
+      "id": 2
+    }
+  ]
+}
