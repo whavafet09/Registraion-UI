@@ -8,9 +8,8 @@ import {
   Select,
   Row,
   Col,
-  Table,
-  Image
 } from "antd";
+import UserService from "../services/user.service";
 import axios from "axios";
 import Swal from 'sweetalert2';
 import { UploadOutlined } from "@ant-design/icons";
@@ -19,11 +18,13 @@ const { Step } = Steps;
 const { Option } = Select;
 
 const Registration = () => {
+  
   const [currentStep, setCurrentStep] = useState(0);
   const [form] = Form.useForm();
   const [formData, setFormData] = useState({}); // Store form data
 
   const nextStep = () => {
+    
     form.validateFields().then((values) => {
       setFormData((prevData) => ({ ...prevData, ...values }));
       setCurrentStep(currentStep + 1);
@@ -171,21 +172,51 @@ const Step1 = ({ form, onNext }) => {
   );
 };
 
+
 const Step2 =  ({ form, onPrev, formData }) => {
+  const {Register} = UserService();
   const onFinish = async (values) => {
+    const formDatax = new FormData();
+
     const combinedData = { ...formData, ...values };
-    //console.log("Combined values:", combinedData);
-    const data = {
-      Name:combinedData.name,
-      Email:combinedData.email,
-      Religion:combinedData.religion,
-      Address:combinedData.address,
-      OrganizationName:combinedData.organizationName,
-      ContactNumber:combinedData.contactNumber
-    }
+
+    formDatax.append("Register.OrganizationLogo",combinedData.logo.fileList[0].originFileObj);
+    formDatax.append("Register.OrganizationName",combinedData.organizationName);
+    formDatax.append("Register.EventDetail",combinedData.eventDetails);
+    formDatax.append("Register.EventDateTime",combinedData.dateTime);
+    formDatax.append("Register.EventLocation",combinedData.locationEvent);
+    formDatax.append("Register.FullName",combinedData.name);
+    formDatax.append("Register.Email",combinedData.email);
+    formDatax.append("Register.Contact",combinedData.contactNumber);
+    formDatax.append("Register.Address",combinedData.address);
+    formDatax.append("Register.Religion",combinedData.religion);
+    formDatax.append("Register.EmergencyContact",combinedData.emergencyContact);
+    formDatax.append("Register.BloodType",combinedData.bloodType);
+    formDatax.append("Register.ShirtSize",combinedData.tshirtSize);
+    formDatax.append("Register.Category",combinedData.category);
+    formDatax.append("Register.DriverLicencePhoto",combinedData.driverLicense.fileList[0].originFileObj);
+    formDatax.append("Register.PaymentPhoto",combinedData.paymentPhoto.fileList[0].originFileObj);
+    formDatax.append("Register.Comment",combinedData.comments);
+    formDatax.append("Register.MotorcycleBrand",combinedData.motorcycleBrand);
+    formDatax.append("Register.MotorcycleModel",combinedData.motorcycleModel);
+    formDatax.append("Register.MotorcycleYear",combinedData.motorcycleYear);
+    formDatax.append("Register.MotorcycleColor",combinedData.motorcycleColor);
+    formDatax.append("Register.PlateNumber",combinedData.plateNumber);
+  
+
+
+
     try {
-      const response = await axios.post('http://localhost:3031/listregistration', data);
-      if(response.data){
+      Swal.fire({
+        title: 'Please Wait !',
+        text:'This is Automatically Close',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading()
+          },
+    });
+      const response =  await Register(formDatax);
+      if(response.status === 200){
         Swal.fire({
           title:'Successfully Submit Registration!',
           text:'Please click ok!',
@@ -196,9 +227,26 @@ const Step2 =  ({ form, onPrev, formData }) => {
         form.resetFields();
         window.location.reload()
         })
+      }else{
+        Swal.fire({
+            title:'Ooops!',
+            text:'something went wrong',
+            icon:'waring',
+            allowOutsideClick: false              
+          }
+          ).then(()=>{
+          window.location.reload();
+          })
       }
     } catch (error) {
-      console.error('Error posting data:', error);
+      if(axios.isAxiosError(error)){
+        //console.log(error.response.data.status);
+        Swal.close()
+        console.log(error.response.data.errors);
+        if(error.response.data.status === 400){
+          alert("Please Fill Up All Fields")
+        }
+      }
     }
   };
 
