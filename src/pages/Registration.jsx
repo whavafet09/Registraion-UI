@@ -9,13 +9,14 @@ import {
   Row,
   Col,
 } from "antd";
+import { useNavigate } from "react-router-dom";
 import UserService from "../services/user.service";
 import axios from "axios";
 import Swal from 'sweetalert2';
 import { UploadOutlined } from "@ant-design/icons";
 
 const { Step } = Steps;
-const { Option } = Select;
+//const { Option } = Select;
 
 const Registration = () => {
   
@@ -131,9 +132,9 @@ const Step1 = ({ form, onNext }) => {
       <Form.Item
       className="animate__animated animate__backInRight"
         name="organizationName"
-        label="Organization Name"
+        label="Organization Name / Event Name"
         rules={[
-          { required: true, message: "Please enter the organization name" },
+          { required: true, message: "Please enter the organization name and event name" },
         ]}
       >
         <Input className="myBorderBlack" size="small" />
@@ -142,8 +143,8 @@ const Step1 = ({ form, onNext }) => {
       <Form.Item
       className="animate__animated animate__backInLeft"
         name="eventDetails"
-        label="Event Details"
-        rules={[{ required: true, message: "Please enter the event details" }]}
+        label="Organization / Event Details"
+        rules={[{ required: true, message: "Please enter the organization & event details" }]}
       >
         <Input.TextArea className="myBorderBlack" size="small" />
       </Form.Item>
@@ -174,6 +175,7 @@ const Step1 = ({ form, onNext }) => {
 
 
 const Step2 =  ({ form, onPrev, formData }) => {
+  const navigate = useNavigate()
   const {Register} = UserService();
   const onFinish = async (values) => {
     const formDatax = new FormData();
@@ -225,7 +227,7 @@ const Step2 =  ({ form, onPrev, formData }) => {
         }
         ).then(()=>{
         form.resetFields();
-        window.location.reload()
+        navigate("/List")
         })
       }else{
         Swal.fire({
@@ -273,8 +275,8 @@ const Step2 =  ({ form, onPrev, formData }) => {
           <Col span={12} className="gutter-row">
             <Form.Item
               name="name"
-              label="Name"
-              rules={[{ required: true, message: "Please enter your name" }]}
+              label="Full Name"
+              rules={[{ required: true, message: "Please enter your full name" }]}
             >
               <Input className="myBorderBlack" size="small" />
             </Form.Item>
@@ -365,6 +367,10 @@ const Step2 =  ({ form, onPrev, formData }) => {
           <Input className="myBorderBlack" size="small" />
         </Form.Item>
 
+        <Form.Item name="category" label="Choose Category (Single,Group of 5 and etc.)">
+          <Input className="myBorderBlack" size="small" />
+        </Form.Item>
+{/* 
         <Form.Item name="category" label="Choose Category">
           <Select
             className="myBorderBlack"
@@ -375,7 +381,7 @@ const Step2 =  ({ form, onPrev, formData }) => {
             <Option value="groupFive">Group of Five</Option>
             <Option value="groupTen">Group of Ten</Option>
           </Select>
-        </Form.Item>
+        </Form.Item> */}
 
         <Button style={{ marginRight: 8 }} onClick={onPrev}>
           Previous
