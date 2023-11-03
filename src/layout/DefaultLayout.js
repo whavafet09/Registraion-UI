@@ -7,12 +7,12 @@ export default function DefaultLayout() {
   const menuItems = [
     {
       key: "/Registration",
-      label: "Registration",
+      label: "Welcome Riders",
     },
-    {
-      key: "/List",
-      label: "List",
-    },
+    // {
+    //   key: "/List",
+    //   label: "List",
+    // },
   ];
 
   const handleMenuClick = ({ key }) => {
@@ -56,8 +56,8 @@ export default function DefaultLayout() {
           }}
           className="gradientBackground"
         >
-          <a href={"mailto:omniinquiries@gmail.com"} style={{ color: "black" }}>
-            omniinquiries@gmail.com
+          <a href={"mailto:eddiesonsimon@omnitechcorporation.com"} style={{ color: "black" }}>
+            Powered By: Omnitech Business Solutions Corporation
           </a>
         </Footer>
       </Layout>

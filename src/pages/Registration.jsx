@@ -5,9 +5,9 @@ import {
   Form,
   Input,
   Upload,
-  Select,
   Row,
   Col,
+  Image
 } from "antd";
 import { useNavigate } from "react-router-dom";
 import UserService from "../services/user.service";
@@ -57,15 +57,17 @@ const Registration = () => {
         minHeight: "100vh",
       }}
     >
-      <h1
+      <div
         style={{ fontSize: "24px", marginBottom: "20px", textAlign: "center" }}
       >
-        <h4 style={{color:"#ac2c2c"}} className="animate__animated animate__backInDown">Philippine Motorcycle Tourism Registration Form</h4>
-      </h1>
+        <Image src="pmtlogo.jpg" width={250}></Image>
+        <br></br>
+        <h4 style={{color:"black"}} className="animate__animated animate__backInDown">Registration Form</h4>
+      </div>
       <div
       className="animate__animated animate__fadeIn"
         style={{
-          width: "50%",
+          width: "100%",
           padding: "20px",
           borderRadius: "20px",
           boxShadow: '1px 2px 4px rgba(0, 0, 0, 0.5)'
