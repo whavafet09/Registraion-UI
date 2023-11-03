@@ -3,7 +3,7 @@ import axios from "axios";
 const Pmtr = () =>{
   const [token] = useState(localStorage.getItem("token"))
   const [instance] = useState(() => axios.create({
-         baseURL: 'http://registrationbackend-prod.ap-southeast-1.elasticbeanstalk.com/',
+         baseURL: 'https://admin.philippinemotorcycletourism.com/',
   }))
 
  // baseURL: ' http://registrationbackend-prod.ap-southeast-1.elasticbeanstalk.com/'
