@@ -60,7 +60,7 @@ const Registration = () => {
       <div
         style={{ fontSize: "24px", marginBottom: "20px", textAlign: "center" }}
       >
-        <Image src="pmtlogo.jpg" width={250}></Image>
+        <Image src="pmtlogo.png" width={400}></Image>
         <br></br>
         <h4 style={{color:"black"}} className="animate__animated animate__backInDown">Registration Form</h4>
       </div>

@@ -57,7 +57,7 @@ export default function DefaultLayout() {
           className="gradientBackground"
         >
           <a href={"mailto:eddiesonsimon@omnitechcorporation.com"} style={{ color: "black" }}>
-            Powered By: Omnitech Business Solutions Corporation
+            Powered By: Omnitech Business Solutions Corporation eddiesonsimon@omnitechcorporation.com
           </a>
         </Footer>
       </Layout>
