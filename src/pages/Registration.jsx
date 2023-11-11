@@ -229,7 +229,7 @@ const Step2 =  ({ form, onPrev, formData }) => {
         }
         ).then(()=>{
         form.resetFields();
-        navigate("/List")
+        navigate("/Registration")
         })
       }else{
         Swal.fire({
