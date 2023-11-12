@@ -164,7 +164,7 @@ const Registration = () => {
               lg: 32,
             }}
           >
-            <Col span={8} className="gutter-row">
+            <Col span={24} className="gutter-row">
               <Form.Item
                 name="clubName"
                 label="Club Name"
@@ -175,7 +175,7 @@ const Registration = () => {
                 <Input className="myBorderBlack" size="small" />
               </Form.Item>
             </Col>
-            <Col span={8} className="gutter-row">
+            <Col span={12} className="gutter-row">
               <Form.Item
                 name="clubAddress"
                 label="Chapter / Club Address"
@@ -189,7 +189,7 @@ const Registration = () => {
                 <Input className="myBorderBlack" size="small" />
               </Form.Item>
             </Col>
-            <Col span={8} className="gutter-row">
+            <Col span={12} className="gutter-row">
               <Form.Item
                 name="mediaChannel"
                 label="Social Media Name/Channel"
