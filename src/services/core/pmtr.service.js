@@ -5,7 +5,8 @@ const Pmtr = () =>{
   const [instance] = useState(() => axios.create({
          baseURL: 'https://admin.philippinemotorcycletourism.com/',
   }))
-
+  //baseURL: 'https://localhost:7244/',
+  //baseURL: 'https://admin.philippinemotorcycletourism.com/',
  // baseURL: ' http://registrationbackend-prod.ap-southeast-1.elasticbeanstalk.com/'
 
 

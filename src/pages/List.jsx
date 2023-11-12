@@ -150,7 +150,7 @@ export default function List() {
               </Col>
             </Row>
             <br></br>
-            <hr></hr>
+            {/* <hr></hr>
 
             <h3>Oragnization Info.</h3>
             <p>
@@ -169,7 +169,7 @@ export default function List() {
                 details.user.event &&
                 details.user.event.organization.logo
               }
-            ></Image>
+            ></Image> */}
             <br></br>
             <hr></hr>
             <h3>Motorcyle Info.</h3>
@@ -189,11 +189,11 @@ export default function List() {
             <hr></hr>
             <h3>Event Info.</h3>
             <p>
-              <label>Event Date and Time:</label>{" "}
-              {details &&
+              <label>Event Date:</label>{"March 20, 2024"}
+              {/* {details &&
                 details.user &&
                 details.user.event &&
-                details.user.event.dateTime}
+                details.user.event.dateTime} */}
             </p>
             <p>
               <label>Event Details:</label>{" "}
