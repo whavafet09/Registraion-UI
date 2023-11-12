@@ -6,4 +6,20 @@
     /* Replace the colors (#FF9900 and #FFCC00) with your desired gradient colors */
   }
 
+  .imageContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
   
+  .imgResponsive {
+    max-width: 400px; /* Adjust the width based on your needs */
+    height: auto;
+    margin: 10px;
+  }
+
+  @media (max-width: 80%) {
+    .imgResponsive {
+        width: 350px;
+    }
+}

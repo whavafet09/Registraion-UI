@@ -113,7 +113,12 @@ const Registration = () => {
       <div
         style={{ fontSize: "24px", marginBottom: "20px", textAlign: "center" }}
       >
-        <Image src="pmtlogo.png" width={400}></Image>
+        <div className="imageContainer">
+          <Image className="imgResponsive" src="pmtlogo.png" ></Image>
+          <Image className="imgResponsive" src="sot.png" ></Image>
+        </div>
+
+        <br></br>
         <br></br>
         <h4
           style={{ color: "black" }}
@@ -133,8 +138,7 @@ const Registration = () => {
         }}
       >
         <div>
-          <Image src="sot.png" width={400}></Image>
-          <h2>Date: March 20, 2024</h2>
+          <h2>Date: Dec 3 2023</h2>
           <h2>Location: Baguio, Benguet</h2>
         </div>
         <hr></hr>

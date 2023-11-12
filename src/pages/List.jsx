@@ -189,7 +189,7 @@ export default function List() {
             <hr></hr>
             <h3>Event Info.</h3>
             <p>
-              <label>Event Date:</label>{"March 20, 2024"}
+              <label>Event Date:</label>{"Dec 3 2023"}
               {/* {details &&
                 details.user &&
                 details.user.event &&
