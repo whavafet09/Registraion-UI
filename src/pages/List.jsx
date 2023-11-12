@@ -25,10 +25,16 @@ export default function List() {
   };
   const columns = [
     {
-      title: "Organization Name",
-      dataIndex: "OrganizationName",
-      key: "organizationName",
-      render: (_, record) => record.user.event.organization.name,
+      title: "Club Name",
+      dataIndex: "clubName",
+      key: "clubName",
+      render: (_, record) => record.user.clubName,
+    },
+    {
+      title: "Club Address",
+      dataIndex: "clubAddress",
+      key: "clubAddress",
+      render: (_, record) => record.user.clubAddress,
     },
     {
       title: "Name",
@@ -129,6 +135,14 @@ export default function List() {
                   <label>Shirt Size:</label>{" "}
                   {details && details.user && details.user.shirtSize}
                 </p>
+                <p>
+                  <label>Note for Payment:</label>{" "}
+                  {details && details.user && details.user.comment}
+                </p>
+                <p>
+                  <label>Other Details:</label>{" "}
+                  {details && details.user && details.user.category}
+                </p>
                 <br></br>
               </Col>
               <Col span={12} className="gutter-row">
@@ -150,26 +164,17 @@ export default function List() {
               </Col>
             </Row>
             <br></br>
-            {/* <hr></hr>
-
-            <h3>Oragnization Info.</h3>
+            <hr></hr>
+            <h3>Club Information</h3>    
             <p>
-              <label>Organization Name:</label>
-              {details &&
-                details.user &&
-                details.user.event &&
-                details.user.event.organization.name}
+              <label>Club Name:</label> {details && details.user && details.user.clubName}
             </p>
-            <h4>Organization Logo</h4>
-            <Image
-              width={200}
-              src={
-                details &&
-                details.user &&
-                details.user.event &&
-                details.user.event.organization.logo
-              }
-            ></Image> */}
+            <p>
+              <label>Club Address:</label> {details && details.user && details.user.clubAddress}
+            </p>
+            <p>
+              <label>Social Media Name/Channel:</label> {details && details.user && details.user.socialMediaChannel}
+            </p> 
             <br></br>
             <hr></hr>
             <h3>Motorcyle Info.</h3>

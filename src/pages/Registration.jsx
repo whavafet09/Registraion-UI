@@ -34,6 +34,9 @@ const Registration = () => {
     // formDatax.append("Register.EventDateTime", combinedData.dateTime);
     // formDatax.append("Register.EventLocation", combinedData.locationEvent);
 
+    formDatax.append("Register.ClubName", values.clubName);
+    formDatax.append("Register.ClubAddress", values.clubAddress);
+    formDatax.append("Register.SocialMediaChannel", values.mediaChannel);
     formDatax.append("Register.FullName", values.name);
     formDatax.append("Register.Email", values.email);
     formDatax.append("Register.Contact", values.contactNumber);
@@ -114,8 +117,8 @@ const Registration = () => {
         style={{ fontSize: "24px", marginBottom: "20px", textAlign: "center" }}
       >
         <div className="imageContainer">
-          <Image className="imgResponsive" src="pmtlogo.png" ></Image>
-          <Image className="imgResponsive" src="sot.png" ></Image>
+          <Image className="imgResponsive" src="pmtlogo.png"></Image>
+          <Image className="imgResponsive" src="sot.png"></Image>
         </div>
 
         <br></br>
@@ -126,6 +129,13 @@ const Registration = () => {
         >
           Registration Form
         </h4>
+        <div>
+          <b>
+            <h5>WHAT: Support our Troops - 3rd Edition</h5>
+            <h5>WHEN: December 2, 2023 Saturday 08:00 AM</h5>
+            <h5>WHERE: Philippine Military Academy (PMA) Baguio City</h5>
+          </b>
+        </div>
       </div>
 
       <div
@@ -137,11 +147,6 @@ const Registration = () => {
           boxShadow: "1px 2px 4px rgba(0, 0, 0, 0.5)",
         }}
       >
-        <div>
-          <h2>Date: Dec 3 2023</h2>
-          <h2>Location: Baguio, Benguet</h2>
-        </div>
-        <hr></hr>
         <Form
           form={form}
           onFinish={onFinish}
@@ -159,6 +164,45 @@ const Registration = () => {
               lg: 32,
             }}
           >
+            <Col span={8} className="gutter-row">
+              <Form.Item
+                name="clubName"
+                label="Club Name"
+                rules={[
+                  { required: true, message: "Please enter your club name" },
+                ]}
+              >
+                <Input className="myBorderBlack" size="small" />
+              </Form.Item>
+            </Col>
+            <Col span={8} className="gutter-row">
+              <Form.Item
+                name="clubAddress"
+                label="Chapter / Club Address"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter your chapter / club address",
+                  },
+                ]}
+              >
+                <Input className="myBorderBlack" size="small" />
+              </Form.Item>
+            </Col>
+            <Col span={8} className="gutter-row">
+              <Form.Item
+                name="mediaChannel"
+                label="Social Media Name/Channel"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter your Social Media Name/Channel",
+                  },
+                ]}
+              >
+                <Input className="myBorderBlack" size="small" />
+              </Form.Item>
+            </Col>
             <Col span={12} className="gutter-row">
               <Form.Item
                 name="name"
@@ -197,69 +241,136 @@ const Registration = () => {
             <Input type="number" className="myBorderBlack" size="small" />
           </Form.Item>
 
-          <Form.Item name="address" label="Address">
+          <Form.Item
+            name="address"
+            label="Address"
+            rules={[{ required: true, message: "Please enter your address" }]}
+          >
             <Input.TextArea className="myBorderBlack" size="small" />
           </Form.Item>
 
-          <Form.Item name="religion" label="Religion">
+          <Form.Item
+            name="religion"
+            label="Religion"
+            rules={[{ required: true, message: "Please enter your religion" }]}
+          >
             <Input className="myBorderBlack" size="small" />
           </Form.Item>
 
-          <Form.Item name="emergencyContact" label="Emergency Contact No.">
+          <Form.Item
+            name="emergencyContact"
+            label="Emergency Contact No."
+            rules={[
+              {
+                required: true,
+                message: "Please enter your Emergency Contact No.",
+              },
+            ]}
+          >
+            
             <Input type="number" className="myBorderBlack" size="small" />
           </Form.Item>
 
-          <Form.Item name="bloodType" label="Blood Type">
+          <Form.Item
+            name="bloodType"
+            label="Blood Type"
+            rules={[{ required: true, message: "Please enter your bloodType" }]}
+          >
             <Input className="myBorderBlack" size="small" />
           </Form.Item>
 
-          <Form.Item name="tshirtSize" label="T-Shirt Size">
+          <Form.Item
+            name="tshirtSize"
+            label="T-Shirt Size"
+            rules={[
+              { required: true, message: "Please enter your tshirtSize" },
+            ]}
+          >
             <Input className="myBorderBlack" size="small" />
           </Form.Item>
 
-          <Form.Item name="driverLicense" label="Submit Driver License Photo">
+          <Form.Item
+            name="driverLicense"
+            label="Submit Driver License Photo"
+            rules={[
+              { required: true, message: "Please enter your driverLicense" },
+            ]}
+          >
             <Upload beforeUpload={() => false}>
               <Button icon={<UploadOutlined />}>Click to Upload</Button>
             </Upload>
           </Form.Item>
 
-          <Form.Item name="paymentPhoto" label="Submit Payment Photo">
+          <Form.Item
+            name="paymentPhoto"
+            label="Submit Payment Photo"
+            rules={[
+              { required: true, message: "Please enter your paymentPhoto" },
+            ]}
+          >
             <Upload beforeUpload={() => false}>
               <Button icon={<UploadOutlined />}>Click to Upload</Button>
             </Upload>
           </Form.Item>
 
-          <Form.Item name="comments" label="Comment Box">
+          <Form.Item name="comments" label="Note for Payment">
             <Input.TextArea className="myBorderBlack" size="small" />
           </Form.Item>
 
           <h3>
             <b>Motorcycle Details</b>
           </h3>
-          <Form.Item name="motorcycleBrand" label="Motorcycle Brand">
-            <Input className="myBorderBlack" size="small" />
-          </Form.Item>
-
-          <Form.Item name="motorcycleModel" label="Motorcycle Model">
-            <Input className="myBorderBlack" size="small" />
-          </Form.Item>
-
-          <Form.Item name="motorcycleYear" label="Motorcycle Year">
-            <Input className="myBorderBlack" size="small" />
-          </Form.Item>
-
-          <Form.Item name="motorcycleColor" label="Motorcycle Color">
-            <Input className="myBorderBlack" size="small" />
-          </Form.Item>
-
-          <Form.Item name="plateNumber" label="Plate Number or MV File">
+          <Form.Item
+            name="motorcycleBrand"
+            label="Motorcycle Brand"
+            rules={[
+              { required: true, message: "Please enter your motorcycleBrand" },
+            ]}
+          >
             <Input className="myBorderBlack" size="small" />
           </Form.Item>
 
           <Form.Item
-            name="category"
-            label="Choose Category (Single,Group of 5 and etc.)"
+            name="motorcycleModel"
+            label="Motorcycle Model"
+            rules={[
+              { required: true, message: "Please enter your motorcycleModel" },
+            ]}
           >
+            <Input className="myBorderBlack" size="small" />
+          </Form.Item>
+
+          <Form.Item
+            name="motorcycleYear"
+            label="Motorcycle Year"
+            rules={[
+              { required: true, message: "Please enter your motorcycleYear" },
+            ]}
+          >
+            <Input className="myBorderBlack" size="small" />
+          </Form.Item>
+
+          <Form.Item
+            name="motorcycleColor"
+            label="Motorcycle Color"
+            rules={[
+              { required: true, message: "Please enter your motorcycleColor" },
+            ]}
+          >
+            <Input className="myBorderBlack" size="small" />
+          </Form.Item>
+
+          <Form.Item
+            name="plateNumber"
+            label="Plate Number or MV File"
+            rules={[
+              { required: true, message: "Please enter your plateNumber" },
+            ]}
+          >
+            <Input className="myBorderBlack" size="small" />
+          </Form.Item>
+
+          <Form.Item name="category" label="Other Details">
             <Input className="myBorderBlack" size="small" />
           </Form.Item>
 
