@@ -3,7 +3,7 @@ import axios from "axios";
 const Pmtr = () =>{
   const [token] = useState(localStorage.getItem("token"))
   const [instance] = useState(() => axios.create({
-         baseURL: 'https://localhost:7244/',
+         baseURL: 'https://admin.philippinemotorcycletourism.com/',
   }))
   //baseURL: 'https://localhost:7244/',
   //baseURL: 'https://admin.philippinemotorcycletourism.com/',
