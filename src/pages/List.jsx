@@ -49,10 +49,16 @@ export default function List() {
       render: (_, record) => record.user.contact,
     },
     {
-      title: "Religion",
-      dataIndex: "Religion",
-      key: "Religion",
-      render: (_, record) => record.user.religion,
+      title: "Size TShirt",
+      dataIndex: "shirtSize",
+      key: "shirtSize",
+      render: (_, record) => record.user.shirtSize,
+    },
+    {
+      title: "Payment Reference No.",
+      dataIndex: "paymentReferenceNumber",
+      key: "paymentReferenceNumber",
+      render: (_, record) => record.user.paymentReferenceNumber,
     },
     {
       title: "Address",
@@ -136,6 +142,16 @@ export default function List() {
                   {details && details.user && details.user.shirtSize}
                 </p>
                 <p>
+                  <label>Driver License Number:</label>{" "}
+                  {details && details.user && details.user.driverLicenseNumber}
+                </p>         
+                <hr></hr>
+                <b>
+                  <label>Payment Reference Number:</label>{" "}
+                  {details && details.user && details.user.paymentReferenceNumber}
+                </b>
+                <hr></hr>
+                <p>
                   <label>Note for Payment:</label>{" "}
                   {details && details.user && details.user.comment}
                 </p>
@@ -194,7 +210,7 @@ export default function List() {
             <hr></hr>
             <h3>Event Info.</h3>
             <p>
-              <label>Event Date:</label>{"Dec 3 2023"}
+              <label>Event Date:</label>{"Dec 2 2023"}
               {/* {details &&
                 details.user &&
                 details.user.event &&
