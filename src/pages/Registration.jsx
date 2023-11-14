@@ -131,7 +131,7 @@ const Registration = () => {
         </h4>
         <div>
           <b>
-            <h5>WHAT: Support our Troops - 3rd Edition</h5>
+            <h5>WHAT: Support our Troops - 5th Edition</h5>
             <h5>WHEN: December 2, 2023 Saturday 08:00 AM</h5>
             <h5>WHERE: Philippine Military Academy (PMA) Baguio City</h5>
           </b>
