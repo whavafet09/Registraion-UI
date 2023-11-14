@@ -172,9 +172,7 @@ const Registration = () => {
               <Form.Item
                 name="clubName"
                 label="Club Name"
-                rules={[
-                  { required: true, message: "Please enter your club name" },
-                ]}
+      
               >
                 <Input className="myBorderBlack" size="small" />
               </Form.Item>
@@ -183,12 +181,6 @@ const Registration = () => {
               <Form.Item
                 name="clubAddress"
                 label="Chapter / Club Address"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please enter your chapter / club address",
-                  },
-                ]}
               >
                 <Input className="myBorderBlack" size="small" />
               </Form.Item>
@@ -197,12 +189,6 @@ const Registration = () => {
               <Form.Item
                 name="mediaChannel"
                 label="Social Media Name/Channel"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please enter your Social Media Name/Channel",
-                  },
-                ]}
               >
                 <Input className="myBorderBlack" size="small" />
               </Form.Item>

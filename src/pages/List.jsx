@@ -28,13 +28,13 @@ export default function List() {
       title: "Club Name",
       dataIndex: "clubName",
       key: "clubName",
-      render: (_, record) => record.user.clubName,
+      render: (_, record) => record.user.clubName === "undefined" ? "" : record.user.clubName,
     },
     {
       title: "Club Address",
       dataIndex: "clubAddress",
       key: "clubAddress",
-      render: (_, record) => record.user.clubAddress,
+      render: (_, record) => record.user.clubAddress === "undefined" ? "" : record.user.clubAddress,
     },
     {
       title: "Name",
