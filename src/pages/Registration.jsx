@@ -46,14 +46,18 @@ const Registration = () => {
     formDatax.append("Register.BloodType", values.bloodType);
     formDatax.append("Register.ShirtSize", values.tshirtSize);
     formDatax.append("Register.Category", values.category);
-    formDatax.append(
-      "Register.DriverLicencePhoto",
-      values.driverLicense.fileList[0].originFileObj
-    );
-    formDatax.append(
-      "Register.PaymentPhoto",
-      values.paymentPhoto.fileList[0].originFileObj
-    );
+
+    // formDatax.append(
+    //   "Register.DriverLicencePhoto",
+    //   values.driverLicense === undefined ? null: values.driverLicense.fileList[0].originFileObj
+    // );
+    // formDatax.append(
+    //   "Register.PaymentPhoto",
+    //   values.paymentPhoto === undefined ? null: values.paymentPhoto.fileList[0].originFileObj
+    // );
+    formDatax.append("Register.DriverLicenseNumber", values.driverlicenseNumber);
+    formDatax.append("Register.PaymentReferenceNumber", values.paymentReferenceNumber);
+
     formDatax.append("Register.Comment", values.comments);
     formDatax.append("Register.MotorcycleBrand", values.motorcycleBrand);
     formDatax.append("Register.MotorcycleModel", values.motorcycleModel);
@@ -267,7 +271,6 @@ const Registration = () => {
               },
             ]}
           >
-            
             <Input type="number" className="myBorderBlack" size="small" />
           </Form.Item>
 
@@ -289,12 +292,9 @@ const Registration = () => {
             <Input className="myBorderBlack" size="small" />
           </Form.Item>
 
-          <Form.Item
+          {/* <Form.Item
             name="driverLicense"
             label="Submit Driver License Photo"
-            rules={[
-              { required: true, message: "Please enter your driverLicense" },
-            ]}
           >
             <Upload beforeUpload={() => false}>
               <Button icon={<UploadOutlined />}>Click to Upload</Button>
@@ -304,13 +304,24 @@ const Registration = () => {
           <Form.Item
             name="paymentPhoto"
             label="Submit Payment Photo"
-            rules={[
-              { required: true, message: "Please enter your paymentPhoto" },
-            ]}
           >
             <Upload beforeUpload={() => false}>
               <Button icon={<UploadOutlined />}>Click to Upload</Button>
             </Upload>
+          </Form.Item> */}
+
+          <Form.Item
+            name="driverlicenseNumber"
+            label="Driver License Number"
+          >
+            <Input className="myBorderBlack" size="small" />
+          </Form.Item>
+
+          <Form.Item
+            name="paymentReferenceNumber"
+            label="Payment Reference Number"
+          >
+            <Input className="myBorderBlack" size="small" />
           </Form.Item>
 
           <Form.Item name="comments" label="Note for Payment">
