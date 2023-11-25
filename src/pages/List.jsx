@@ -1,28 +1,39 @@
-import { Button, Table, Modal, Image, Row, Col } from "antd";
-import { useState, useEffect } from "react";
+import { Button, Table, Modal, Image, Row, Col,Select,Pagination,Input} from "antd";
+import { useState } from "react";
+import { useQuery } from "react-query";
 import UserService from "../services/user.service";
-import axios from "axios";
+//import axios from "axios";
 export default function List() {
   const { GetAllRegister } = UserService();
-  const [data, setData] = useState([]);
+  //const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
   const [details, setDetails] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
-  const fetchData = async () => {
-    try {
-      const response = await GetAllRegister();
-      setData(response.data);
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.log(error.response.data.status);
-        console.log(error.response.data.errors);
-      }
-    }
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await GetAllRegister();
+  //     setData(response.data);
+  //   } catch (error) {
+  //     if (axios.isAxiosError(error)) {
+  //       console.log(error.response.data.status);
+  //       console.log(error.response.data.errors);
+  //     }
+  //   }
+  // };
+
+  let getListRider = async () => {
+    return await GetAllRegister();
   };
+  const listRider = useQuery("listRider", getListRider, {
+    refetchOnMount: true,
+  });
+
   const columns = [
     {
       title: "Club Name",
@@ -58,7 +69,7 @@ export default function List() {
       title: "Payment Reference No.",
       dataIndex: "paymentReferenceNumber",
       key: "paymentReferenceNumber",
-      render: (_, record) => record.user.paymentReferenceNumber,
+      render: (_, record) => record.user.paymentReferenceNumber === "undefined" ? "" : record.user.paymentReferenceNumber,
     },
     {
       title: "Address",
@@ -89,13 +100,93 @@ export default function List() {
     console.log(value);
     setDetails(value);
   };
+
+  const [searchText, setSearchText] = useState("");
+  const [filteredData, setFilteredData] = useState(null);
+
+  const handleSearch = (e) => {
+    const { value } = e.target;
+    setSearchText(value);
+
+    const searchParts = value.toLowerCase().split(" ");
+
+    // Filter the data based on the search text
+    const filtered = listRider.data?.data.filter((item) => {
+      const fullname = item.user.fullName.toLowerCase();
+      const contactNumber = item.user.contact.toLowerCase();
+      const clubName = item.user.clubName.toLowerCase();
+      const shirtSize = item.user.shirtSize.toLowerCase();
+
+
+      return searchParts.some(
+        (part) =>
+        fullname.includes(part) ||
+        contactNumber.includes(part) ||
+        clubName.includes(part) ||
+        shirtSize.includes(part)
+      );
+    });
+
+    setFilteredData(filtered);
+  };
+  const paginatedData = listRider.data?.data.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+  
+  const handlePageChange = (page, pageSize) => {
+    setCurrentPage(page);
+    setPageSize(pageSize);
+  };
+
+  const handlePageSizeChange = (value) => {
+    setPageSize(value);
+    setCurrentPage(1);
+  };
   return (
     <>
       <h3>List Registration Here</h3>
       <div>
         <div>
           <br></br>
-          <Table columns={columns} dataSource={data} rowKey="id" />
+          <br></br>
+        <Input
+          placeholder="Search by name,club name,contact#"
+          value={searchText}
+          onChange={handleSearch}
+          style={{border:"1px solid black"}}
+        />
+          <Table 
+          columns={columns} 
+          dataSource={searchText === "" ? paginatedData : filteredData} 
+          rowKey="id"
+          pagination={false}
+           />
+          <Pagination
+          style={{ display: "flex", justifyContent: "center" }}
+          current={currentPage}
+          total={listRider.data?.data.length}
+          pageSize={pageSize}
+          //showSizeChanger
+          //showQuickJumper
+          // showTotal={(total, range) =>
+          //   `${range[0]}-${range[1]} of ${total} items`
+          // }
+          onChange={handlePageChange}
+          onShowSizeChange={handlePageChange}
+        />
+        <label>Show Entries</label>
+        <Select
+          style={{ marginLeft: "20px" }}
+          value={pageSize}
+          onChange={handlePageSizeChange}
+        >
+          <option value={10}>10</option>
+          <option value={20}>20</option>
+          <option value={50}>50</option>
+          <option value={100}>100</option>
+        </Select>
+        <p>Total: {listRider.data?.data.length}</p>
         </div>
         <div>
           <Modal
