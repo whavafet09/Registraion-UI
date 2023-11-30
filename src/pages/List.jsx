@@ -8,8 +8,9 @@ export default function List() {
   //const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
   const [details, setDetails] = useState({});
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [pageSize, setPageSize] = useState(10);
+  const [totalEntries, setTotalEntries] = useState(null);
 
   // useEffect(() => {
   //   fetchData();
@@ -33,7 +34,7 @@ export default function List() {
   const listRider = useQuery("listRider", getListRider, {
     refetchOnMount: true,
   });
-
+ 
   const columns = [
     {
       title: "Club Name",
@@ -64,6 +65,12 @@ export default function List() {
       dataIndex: "shirtSize",
       key: "shirtSize",
       render: (_, record) => record.user.shirtSize,
+      filters: Array.from(new Set(listRider.data?.data.map(item => item.user.shirtSize)))
+      .map(shirtSize => ({
+        text: shirtSize,
+        value: shirtSize,
+      })),
+      onFilter: (value, record) => record.user.shirtSize === value,
     },
     {
       title: "Payment Reference No.",
@@ -114,34 +121,40 @@ export default function List() {
     const filtered = listRider.data?.data.filter((item) => {
       const fullname = item.user.fullName.toLowerCase();
       const contactNumber = item.user.contact.toLowerCase();
-      const clubName = item.user.clubName.toLowerCase();
-      const shirtSize = item.user.shirtSize.toLowerCase();
+      // const clubName = item.user.clubName.toLowerCase();
+      //const shirtSize = item.user.shirtSize.toLowerCase();
 
 
       return searchParts.some(
         (part) =>
         fullname.includes(part) ||
-        contactNumber.includes(part) ||
-        clubName.includes(part) ||
-        shirtSize.includes(part)
+        contactNumber.includes(part)
+        // clubName.includes(part) ||
+        //shirtSize.includes(part)
       );
     });
 
     setFilteredData(filtered);
   };
-  const paginatedData = listRider.data?.data.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize
-  );
+  // const paginatedData = listRider.data?.data.slice(
+  //   (currentPage - 1) * pageSize,
+  //   currentPage * pageSize
+  // );
   
-  const handlePageChange = (page, pageSize) => {
-    setCurrentPage(page);
-    setPageSize(pageSize);
-  };
+  // const handlePageChange = (page, pageSize) => {
+  //   setCurrentPage(page);
+  //   setPageSize(pageSize);
+  // };
 
-  const handlePageSizeChange = (value) => {
-    setPageSize(value);
-    setCurrentPage(1);
+  // const handlePageSizeChange = (value) => {
+  //   setPageSize(value);
+  //   setCurrentPage(1);
+  // };
+
+  const onChangeTable = (pagination, filters, sorter, extra) => {
+    console.log('params', pagination, filters, sorter, extra);
+    console.log('params', extra.currentDataSource.length);
+    setTotalEntries(extra.currentDataSource.length)
   };
   return (
     <>
@@ -158,11 +171,13 @@ export default function List() {
         />
           <Table 
           columns={columns} 
-          dataSource={searchText === "" ? paginatedData : filteredData} 
+          dataSource={searchText === "" ? listRider.data?.data : filteredData} 
           rowKey="id"
-          pagination={false}
+          pagination={true}
+          onChange={onChangeTable}
+         
            />
-          <Pagination
+          {/* <Pagination
           style={{ display: "flex", justifyContent: "center" }}
           current={currentPage}
           total={listRider.data?.data.length}
@@ -174,8 +189,8 @@ export default function List() {
           // }
           onChange={handlePageChange}
           onShowSizeChange={handlePageChange}
-        />
-        <label>Show Entries</label>
+        /> */}
+        {/* <label>Show Entries</label>
         <Select
           style={{ marginLeft: "20px" }}
           value={pageSize}
@@ -185,8 +200,8 @@ export default function List() {
           <option value={20}>20</option>
           <option value={50}>50</option>
           <option value={100}>100</option>
-        </Select>
-        <p>Total: {listRider.data?.data.length}</p>
+        </Select> */}
+        <h3  style={{ display: "flex", justifyContent: "right" }}>Total: {totalEntries === null ? listRider.data?.data.length:totalEntries}</h3>
         </div>
         <div>
           <Modal
